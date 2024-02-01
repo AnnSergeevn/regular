@@ -45,7 +45,11 @@ def separate_fio(contacts_list):
         # print(rows)
 
         pattern = r"(\+7|8)\s*\(*(\d+)[\)|-]*\s*(\d+)[\s|-]*(\d+)[\s|-]*(\d+)(\s*\(*(доб.)\s*(\d+)\)*)*"
-        rows[5] = re.sub(pattern, r"+7(\2)\3-\4-\5 \7\8", rows[5])
+        rows[5] = re.sub(pattern, r"+7\2\3\4\5 \7\8", rows[5])
+
+        pattern = r"(\+7)(\d+)(\d+)(\d+)(\d+)(\d+)(\d+)(\d+)(\d+)"
+        rows[5] = re.sub(pattern, r"+7(\2)\3\4\5-\6\7-\8\9", rows[5])
+
 
 
 if __name__ == '__main__':
@@ -54,8 +58,7 @@ if __name__ == '__main__':
         contacts_list = list(rows)
         #pprint(contacts_list)
 
-    # TODO 1: выполните пункты 1-3 ДЗ
-    # ваш код
+
 
     separate_fio(contacts_list)
     del_duplicate(contacts_list)
